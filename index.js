@@ -112,11 +112,17 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(sport){
-  let score = 0;
-  return function win(){
-    score ++; // taking the score and incrimenting by 1
-    return `Your ${sport} game score is ${score}`;
+function scoreboard(funcInning,funcScore,num) {
+  let total = {
+    "Home":0,
+    "Away":0
   }
+  for(let i = 1; i <= num;i++){
+    let score = funcScore(funcInning,1)
+    total.Home += score.Home;
+    total.Away += score.Away;
+    console.log(`Inning ${i}: Home Score = ${score.Home} Away Score is ${score.Away}`)
+  }
+  return `Final Score: Home = ${total.Home} Away = ${total.Away}`
 }
-console.log()
+console.log(scoreboard(inning,finalScore,9))
